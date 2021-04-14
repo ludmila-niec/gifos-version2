@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar/Navbar";
+import SearchBar from "./components/Search";
+import Home from "./views/Home";
+import Favorites from "./views/Favorites";
+import Search from "./views/Search";
+import Footer from "./components/Footer";
+// router
+import { Switch, Route } from "react-router-dom";
+// styles
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./theme/GlobalStyles";
+import useTheme from "./theme/useTheme";
+import * as themes from "./theme/theme";
 
 function App() {
+  const { lightTheme, changeThemeHandler } = useTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={lightTheme ? themes.light : themes.dark}>
+        <GlobalStyles />
+        <Navbar changeTheme={changeThemeHandler} />
+        <SearchBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/favorites" component={Favorites} />
+          <Route exact path="/search" component={Search} />
+        </Switch>
+        <Footer />
+      </ThemeProvider>
+    </>
   );
 }
 
