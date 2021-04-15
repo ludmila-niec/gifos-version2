@@ -1,20 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../common/styled";
 
-export const Wrapper = styled.div`
-  grid-column: ${(props) => (props.width > 290 ? "span 2" : "span 1")};
-  @media (min-width: ${({ theme }) => theme.mediaQueries.mediaMd}) {
-    margin: 0;
-    grid-column: ${(props) => (props.width > 300 ? "span 2" : "span 1")};
-    justify-self: stretch;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    background-color: ${({ theme }) => theme.palette.colorPrimary};
-  }
-`;
-
 export const Gif = styled.img`
   justify-self: center;
   position: relative;
@@ -27,13 +13,6 @@ export const Gif = styled.img`
   }
 `;
 
-// MODAL STYLED
-export const CloseBtn = styled(Button)`
-  grid-column: 3 / -1;
-  justify-self: flex-end;
-  margin: 0;
-  padding: 1rem;
-`;
 
 export const FavBtn = styled(Button)`
   grid-column: 3 / -1;
@@ -44,7 +23,8 @@ export const FavBtn = styled(Button)`
   margin: 0;
   background: ${({ theme }) => theme.palette.colorGradient};
   &:focus {
-    border: none;
+    outline: none;
+    border: 2px solid blue;
   }
 `;
 
@@ -63,8 +43,6 @@ export const Description = styled.p`
 export const ModalGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 80%;
-  overflow: hidden;
 `;
 
 export const Loading = styled.div`

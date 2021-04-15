@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Button, Flex } from "../common/styled";
 
-export const WindowBg = styled.div`
+// MODAL CONTENT
+export const Backdrop = styled.div`
   position: fixed;
   z-index: 30;
   top: 0;
@@ -15,21 +16,37 @@ export const WindowBg = styled.div`
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
+  padding:2rem;
 `;
 
-export const Wrapper = styled(Flex)`
-  /* padding: 2rem; */
-  position: relative;
-  &:focus {
-    border: 2px solid ${({ theme }) => theme.palette.colorPrimary};
-  }
-  /* max-width: 300px; */
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
-
 export const CloseBtn = styled(Button)`
-  position: absolute;
-  top: -60px;
-  right: 0;
+  align-self: flex-end;
+  padding: 0.5rem;
+  border-radius: 50px;
   margin: 0;
-  border-radius: 3px;
+  margin-bottom: 1rem;
+`;
+
+
+// MODAL TRIGGER
+export const WrapperGif = styled.div`
+  grid-column: ${(props) => (props.width > 290 ? "span 2" : "span 1")};
+  height:100%;
+  width:100%;
+  @media (min-width: ${({ theme }) => theme.mediaQueries.mediaMd}) {
+    margin: 0;
+    grid-column: ${(props) => (props.width > 300 ? "span 2" : "span 1")};
+    justify-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: ${({ theme }) => theme.palette.colorPrimary};
+  }
 `;
