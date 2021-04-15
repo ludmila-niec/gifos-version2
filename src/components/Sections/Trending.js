@@ -12,24 +12,48 @@ import {
   TextError,
   GradientLine,
 } from "../common/styled";
-import { animateGradientLine } from "../../animate";
+import { animateGradientLine, animateShowError } from "../../animate";
 
 const Trending = () => {
   const { gifs, isLoading, error, loadMoreGifs } = useGifTrending();
-  let containerRef = useRef(null);
-  let gradientLineRef = useRef(null);
+  const containerRef = useRef(null);
+  const gradientLineRef = useRef(null);
+  const errorMsgRef = useRef(null);
   useEffect(() => {
-    animateGradientLine(gradientLineRef, containerRef);
+    animateGradientLine(gradientLineRef.current, containerRef.current);
   }, []);
+
+  useEffect(() => {
+    if (error.trendingGifs) return animateShowError(errorMsgRef.current);
+  }, [error]);
+
+  const gifsLoaded = gifs && gifs.length > 0;
+
+  if (error.trendingGifs) {
+    return (
+      <section>
+        <Container ref={containerRef}>
+          <SectionTitle>Top Trending Gifs</SectionTitle>
+          <Flex height="30vh">
+            <div style={{ overflowY: "hidden" }}>
+              <TextError ref={errorMsgRef}>{error.trendingGifs}</TextError>
+            </div>
+          </Flex>
+        </Container>
+      </section>
+    );
+  }
+
   return (
     <section>
-      <Container ref={(elem) => (containerRef = elem)}>
+      <Container ref={containerRef}>
         <SectionTitle>Top Trending Gifs</SectionTitle>
-        <GradientLine ref={(elem) => (gradientLineRef = elem)} />
-        {error && <TextError>{error}</TextError>}
-        <GridTemplate data={gifs} />
+        <GradientLine ref={gradientLineRef} />
+        {gifsLoaded && <GridTemplate data={gifs} />}
         {isLoading && <Loading />}
-        {gifs.length > 0 && (
+        {error.moreGifs ? (
+          <TextError>{error.moreGifs}</TextError>
+        ) : (
           <Flex height={"20vh"}>
             <ButtonPrimary
               aria-label="load more gifs"

@@ -119,7 +119,6 @@ export const LinkStyled = styled(Link)`
   margin-right: 1rem;
   transition: all 0.2s linear;
   &:hover {
-    /* color: ${({ theme }) => theme.palette.colorPrimary}; */
     background: ${({ theme }) => theme.palette.colorGradient};
     background-size: cover;
     background-clip: text;
@@ -138,7 +137,15 @@ export const TextError = styled.p`
   text-transform: capitalize;
   margin: 2rem;
   font-weight: 600;
-  font-size: 4rem;
+  font-size: 1.5rem;
+  color: ${({theme}) => theme.palette.colorPrimary};
+
+  @media screen and (min-width: ${({ theme }) => theme.mediaQueries.mediaMd}) {
+    font-size: 2rem;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.mediaQueries.mediaLg}) {
+    font-size: 3rem;
+  }
 `;
 
 // DECO GRADIENT LINE

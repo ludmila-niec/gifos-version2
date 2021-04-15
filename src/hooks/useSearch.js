@@ -16,6 +16,7 @@ const useSearch = () => {
 
   //   load suggestions while typing in the input
   useEffect(() => {
+    // wait response to set data
     let cancel = false;
     async function init() {
       try {
@@ -27,7 +28,7 @@ const useSearch = () => {
         if (meta.status !== 200) throw new Error(meta.msg);
         setSuggestions(data);
       } catch (err) {
-        setError({ suggestion: "Something went wrong" });
+        setError({ suggestion: "Fail to load suggestions" });
       } finally {
         setIsLoading(false);
       }
@@ -45,16 +46,11 @@ const useSearch = () => {
       setQuery("");
       setError({});
       const response = await api.searchGif(keyword);
-      const { data, meta, pagination } = response;
+      const { data, meta} = response;
       if (meta.status !== 200) throw new Error(meta.msg);
-      if (pagination.count === 0)
-        throw new Error("No more gifs found for the search");
-      // setError({search: "No more gis found for the search"})
       setGifs(data);
-      // redirect to new page
     } catch (err) {
-      setGifs([]);
-      setError({ search: "something went wrong" });
+      setError({ search: "Fail to load Gifs" });
     } finally {
       setIsLoading(false);
     }
@@ -67,10 +63,8 @@ const useSearch = () => {
       setError("");
       let offset = gifs.length + 1;
       const response = await api.loadMoreResultsGifs(keyword, offset);
-      const { data, meta, pagination } = response;
+      const { data, meta} = response;
       if (meta.status !== 200) throw new Error(meta.msg);
-      if (pagination.count === 0)
-        throw new Error("No more gifs found in the trending section");
       if (isMountedRef.current)
         setGifs((prevGifs) => {
           const prevArray = [...prevGifs];
@@ -78,7 +72,7 @@ const useSearch = () => {
         });
     } catch (err) {
       if (isMountedRef.current)
-        setError({ loadMore: "Something went wrong :(" });
+        setError({ loadMore:"Fail to load more gifs :(" });
       console.log(err);
     } finally {
       if (isMountedRef.current) setIsLoading(false);

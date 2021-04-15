@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import {
   Container,
+  Flex,
   SectionTitle,
   TextError,
   GradientLine,
@@ -10,31 +11,63 @@ import Loading from "../components/Loading";
 // hook
 import useFavorite from "../hooks/useFavorite";
 // animation
-import { animateGradientLine } from "../animate";
+import { animateGradientLine, animateShowError } from "../animate";
+
 const Favorites = () => {
-  const { gifs, loadFavorites, isLoading, error } = useFavorite();
-  let containerRef = useRef(null);
-  let gradientLineRef = useRef(null);
+  const {
+    state: { gifs, isLoading, error },
+    actions: { loadFavorites },
+  } = useFavorite();
+  const containerRef = useRef(null);
+  const gradientLineRef = useRef(null);
+  const errorMsgRef = useRef(null);
+  const noFavoritesRef = useRef(null);
+
+  const gifsLoaded = gifs.length > 0;
+  const noFavorites = !isLoading && !gifsLoaded;
 
   useEffect(() => {
     loadFavorites();
+    animateGradientLine(gradientLineRef.current, containerRef.current);
   }, []);
 
   useEffect(() => {
-    animateGradientLine(gradientLineRef, containerRef);
-  }, []);
+    if (error.loadFavorites) return animateShowError(errorMsgRef.current);
+  }, [error]);
 
-  const noFavorites = !isLoading && gifs.length === 0;
+  useEffect(() => {
+    if (noFavorites) return animateShowError(noFavoritesRef.current);
+  }, [noFavorites]);
+
+  if (error.loadFavorites) {
+    return (
+      <main style={{ minHeight: "60vh" }}>
+        <Flex height="50vh">
+          <div style={{ overflowY: "hidden" }}>
+            <TextError ref={errorMsgRef}>{error.loadFavorites}</TextError>
+          </div>
+        </Flex>
+      </main>
+    );
+  }
+
+  const noFavoritesSavedMsg = (
+    <Flex height="30vh">
+      <div style={{ overflowY: "hidden" }}>
+        <TextError ref={noFavoritesRef}>
+          You don't have favorites gifs yet
+        </TextError>
+      </div>
+    </Flex>
+  );
+
   return (
-    <main style={{minHeight:"90vh"}}>
-      <Container ref={(elem) => (containerRef = elem)}>
+    <main style={{ minHeight: "90vh" }}>
+      <Container ref={containerRef}>
         <SectionTitle>My Favorites</SectionTitle>
-        <GradientLine ref={(elem) => (gradientLineRef = elem)} />
+        <GradientLine ref={gradientLineRef} />
         {isLoading && <Loading />}
-        {noFavorites && (
-          <TextError>You don't have favorites gifs yet</TextError>
-        )}
-        {error ? <TextError>{error}</TextError> : <GridTemplate data={gifs} />}
+        {noFavorites ? noFavoritesSavedMsg : <GridTemplate data={gifs} />}
       </Container>
     </main>
   );

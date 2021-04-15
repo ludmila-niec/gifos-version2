@@ -22,7 +22,6 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
   }
 
   function onClickAway(e) {
-    console.log(e.target);
     if (modalRef.current && modalRef.current.contains(e.target)) return;
     onClose();
   }

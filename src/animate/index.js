@@ -60,7 +60,7 @@ export function animateHeartFavorite(elem) {
   });
 }
 // DELETE FAVORITE GIF
-export function animateDeleteGif(elem) {
+export function animateToastAlert(elem) {
   gsap.to(elem, {
     opacity: 1,
     y: -100,
@@ -79,4 +79,13 @@ export function animateSearchResult(line, title) {
     duration: 1.5,
     ease: "power2",
   }).from(title, { xPercent: 25, duration: 1, opacity: 0 }, "-=1");
+}
+
+// ERROR MESSAGE
+export function animateShowError(elem) {
+  gsap.from(elem, {
+    y: 100,
+    duration: 3,
+    ease: "power4.out",
+  });
 }

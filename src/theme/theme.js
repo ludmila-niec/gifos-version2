@@ -7,6 +7,7 @@ export const light = {
     colorAccent: "#FFFFFF",
     colorBackground: "#E6F0F6",
     colorText: "#4A456F",
+    colorError:"#d32f2f",
     colorGradient:
       "linear-gradient(89.99deg, #F385DF 0%, rgba(136, 73, 248, 0.63) 49.85%, rgba(73, 202, 247, 0.6) 93.83%)",
     colorGlass:
@@ -67,6 +68,7 @@ export const dark = {
     colorAccent: "#161860",
     colorBackground: "#04041A",
     colorText: "#E6F0F6",
+    colorError:"#e57373",
     colorGradient:
       "linear-gradient(89.99deg, #F6A2E6 0%, #A475F9 44.47%, #72D6F9 93.83%)",
     colorGlass:

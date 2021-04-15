@@ -4,24 +4,21 @@ import * as api from "../services/api";
 const useGifTrending = () => {
   const [gifs, setGifs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
   const isMountedRef = useRef(false);
 
   const getGifs = async () => {
     try {
       isMountedRef.current = true;
+      setError({})
       setIsLoading(true);
-      setError('')
       const response = await api.getTrendingGifs();
-      const { data, meta, pagination } = response;
+      const { data, meta } = response;
       if (meta.status !== 200) throw new Error(meta.msg);
-      if (pagination.count === 0)
-        throw new Error("No more gifs found in the trending section");
       setGifs(data);
     } catch (err) {
-      if (isMountedRef.current) setError('Something went wrong :(');
-      console.log(err);
-      throw err
+      if (isMountedRef.current)
+        setError({ trendingGifs: "Fail to load trending gifs" });
     } finally {
       if (isMountedRef.current) setIsLoading(false);
     }
@@ -30,23 +27,20 @@ const useGifTrending = () => {
   const loadMoreGifs = async () => {
     try {
       isMountedRef.current = true;
+      setError({})
       setIsLoading(true);
-      setError('')
       let offset = gifs.length;
       const response = await api.loadMoreTrendingGifs(offset);
-      const { data, meta, pagination } = response;
+      const { data, meta} = response;
       if (meta.status !== 200) throw new Error(meta.msg);
-      if (pagination.count === 0)
-        throw new Error("No more gifs found in the trending section");
       if (isMountedRef.current)
         setGifs((prevGifs) => {
           const prevArray = [...prevGifs];
           return prevArray.concat(data);
         });
     } catch (err) {
-      if (isMountedRef.current) setError('Something went wrong :(');
-      console.log(err);
-      throw err;
+      if (isMountedRef.current)
+        setError({ moreGifs: "Fail to load more gifs :(" });
     } finally {
       if (isMountedRef.current) setIsLoading(false);
     }
