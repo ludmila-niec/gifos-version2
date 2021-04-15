@@ -15,49 +15,42 @@ import {
   Alert,
 } from "./styled";
 // animation
-import { animateHeartFavorite, animateDeleteGif } from "../../animate";
-import { gsap } from "gsap";
+import { animateHeartFavorite, animateToastAlert } from "../../animate";
 import PropTypes from "prop-types";
 
 const GifCardModal = ({ data }) => {
-  // state for loading animation
-  const [isLoading, setIsloading] = useState(true);
   // refs
-  const imgRef = useRef(null);
-  const loadingRef = useRef(null);
   const heartRef = useRef(null);
-  let alertRef = useRef(null);
+  const alertRef = useRef(null);
+  const alertError = useRef(null);
   // hooks
-  const { addFavorite, removeFavorite, localFavs } = useFavorite();
+  const {
+    state: { localFavs, error },
+    actions: { addFavorite, removeFavorite },
+  } = useFavorite();
   const { mdImg: image, title, id, height, width } = data;
 
   const isFav = localFavs.includes(id);
 
-  //   check if image has loaded
   useEffect(() => {
-    const image = imgRef.current;
-    if (image && image.complete) {
-      setIsloading(false);
-    }
-  }, []);
+    if (error.addFavorite) return animateToastAlert(alertError.current);
+  }, [error]);
 
-  // const like = heartRef.current;
   const handleAddFavorite = (id) => {
     addFavorite(id);
     animateHeartFavorite(heartRef.current);
   };
 
+
   const handleRemovefavorite = (id) => {
-    setTimeout(() => {
-      removeFavorite(id);
-    }, 2000);
-    animateDeleteGif(alertRef);
+    removeFavorite(id);
+    animateToastAlert(alertRef.current);
   };
 
   return (
     <ModalGrid>
       <Loading width={width} height={height}>
-        <Gif src={image} alt={title} ref={imgRef} />
+        <Gif src={image} alt={title}/>
       </Loading>
       <HeartAnimation ref={heartRef}>
         <Fav height="59" width="57" />
@@ -78,7 +71,8 @@ const GifCardModal = ({ data }) => {
           <NotFav />
         </FavBtn>
       )}
-      <Alert ref={(elem) => (alertRef = elem)}>Favorito eleminado</Alert>
+      <Alert ref={alertRef}>Favorito eleminado</Alert>
+      <Alert error ref={alertError}>{`Error: ${error.addFavorite}`}</Alert>
     </ModalGrid>
   );
 };

@@ -24,7 +24,7 @@ export function FavoriteProvider({ children }) {
   const [localFavs, dispatchLocal] = useReducer(localReducer, localFavorites);
   const [gifs, dispatch] = useReducer(favoritesReducer, initialFavorites);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
 
   useEffect(() => {
     setItemLocalStorage("favorites", localFavs);
@@ -43,6 +43,7 @@ export function FavoriteProvider({ children }) {
   };
 
   const loadFavorites = async () => {
+    setError({});
     if (localFavs.length === 0) return;
     const list = localFavs.toString();
     try {
@@ -53,13 +54,14 @@ export function FavoriteProvider({ children }) {
       return loadFavoritesSuccess(data);
     } catch (error) {
       console.log(error);
-      setError("something went wrong :(");
+      setError({ loadFavorites: "Fail to load Favorites :(" });
     } finally {
       setIsLoading(false);
     }
   };
 
   const addFavorite = async (id) => {
+    setError({});
     try {
       const response = await api.getGifbyId(id);
       const { data, meta } = response;
@@ -67,9 +69,9 @@ export function FavoriteProvider({ children }) {
       // save to local storage
       addLocalFavorite(data.id);
       return addFavoriteSucess(data);
-    } catch (err) {
-      console.log(error);
-      setError("something went wrong :(");
+    } catch (error) {
+      setError({ addFavorite: "Fail to save Favorite" });
+      resetError()
     }
   };
 
@@ -89,20 +91,18 @@ export function FavoriteProvider({ children }) {
     dispatchLocal({ type: types.REMOVE_LOCAL_FAVORITE, payload: { id } });
   };
 
-  const contextValue = {
-    gifs,
-    isLoading,
-    error,
-    loadFavorites,
-    addFavorite,
-    removeFavorite,
-    localFavs,
-   
-  };
+  // util reset error for addFavorite
+  function resetError(){
+    setTimeout(() =>{
+      setError({})
+    },4000)
+  }
+
+  const state = { gifs, isLoading, error, localFavs };
+  const actions = { loadFavorites, addFavorite, removeFavorite };
   return (
-    <FavoriteContext.Provider value={contextValue}>
+    <FavoriteContext.Provider value={{ state, actions }}>
       {children}
     </FavoriteContext.Provider>
   );
 }
-

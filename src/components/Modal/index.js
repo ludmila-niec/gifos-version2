@@ -10,10 +10,8 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
   const buttonRef = useRef();
 
   useEffect(() => {
-    {
-      isOpen && buttonRef.current.focus();
-    }
-  },[isOpen]);
+    isOpen && buttonRef.current.focus();
+  }, [isOpen]);
 
   function onOpen() {
     setIsOpen(true);
@@ -24,13 +22,12 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
   }
 
   function onClickAway(e) {
-    console.log(e.target);
     if (modalRef.current && modalRef.current.contains(e.target)) return;
     onClose();
   }
 
-  function onKeyDown(e){
-    return e.keyCode === 27 && onClose()
+  function onKeyDown(e) {
+    return e.keyCode === 27 && onClose();
   }
   return (
     <>

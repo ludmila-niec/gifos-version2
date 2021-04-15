@@ -63,7 +63,7 @@ export const HeartAnimation = styled.div`
 export const Alert = styled.div`
   font-size: 0.8rem;
   color: white;
-  background-color: ${({ theme }) => theme.palette.colorSecondary};
+  background-color: ${({ theme, error }) => error ? theme.palette.colorError : theme.palette.colorSecondary};
   padding: 0.7rem 1rem;
   border-radius: 5px;
   position: absolute;

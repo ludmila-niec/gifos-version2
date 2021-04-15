@@ -16,33 +16,62 @@ import {
 } from "../components/common/styled";
 import { SearchTitle, TitleContainer } from "../components/Search/styled";
 // animation
-import { animateSearchResult } from "../animate";
+import { animateSearchResult, animateShowError } from "../animate";
 
 const Search = () => {
   const keyword = new URLSearchParams(useLocation().search).get("query");
   const { gifs, isLoading, error, submitSearch, loadMoreGifs } = useSearch();
   const titleRef = useRef(null);
   const gradientLineRef = useRef(null);
-  useEffect(() => {
-    submitSearch(keyword);
-  }, [keyword]);
+  const errorMsgRef = useRef(null);
+  const noResultsRef = useRef(null);
+
+  const gifsLoaded = gifs.length > 0;
+  // 0 results for current search
+  const noResults = !isLoading && !gifsLoaded;
 
   useEffect(() => {
+    submitSearch(keyword);
     animateSearchResult(gradientLineRef.current, titleRef.current);
   }, [keyword]);
 
-  if (!isLoading && gifs.length === 0) {
+  useEffect(() => {
+    if (error.search) return animateShowError(errorMsgRef.current);
+  }, [error]);
+
+  useEffect(() => {
+    if (noResults) return animateShowError(noResultsRef.current);
+  }, [noResults]);
+
+  // failed to load gifs
+  if (error.search) {
     return (
-      <main style={{minHeight:'80vh'}}>
-      <Container>
-        <SearchTitle>0 results for: "{keyword}"</SearchTitle>
-        <TextError>Sorry, nothing here :(</TextError>
-      </Container>
+      <main style={{ minHeight: "60vh" }}>
+        <Flex height="50vh">
+          <div style={{ overflowY: "hidden" }}>
+            <TextError ref={errorMsgRef}>{error.search}</TextError>
+          </div>
+        </Flex>
+      </main>
+    );
+  }
+
+  if (noResults) {
+    return (
+      <main style={{ minHeight: "60vh" }}>
+        <Container>
+          <SearchTitle>0 results for: "{keyword}"</SearchTitle>
+          <Flex height="30vh">
+            <div style={{ overflowY: "hidden" }}>
+              <TextError ref={noResultsRef}>Sorry, nothing here :(</TextError>
+            </div>
+          </Flex>
+        </Container>
       </main>
     );
   }
   return (
-    <main>
+    <main style={{ minHeight: "60vh" }}>
       <TitleContainer>
         <SearchTitle textAlign={"left"} ref={titleRef}>
           Results for: "{keyword}"
@@ -51,12 +80,12 @@ const Search = () => {
       </TitleContainer>
       <Container>
         {error.search && <TextError>{error.search}</TextError>}
-        <GridTemplate data={gifs} />
+        {gifsLoaded && <GridTemplate data={gifs} />}
         {isLoading && <Loading />}
-        <Flex height={"20vh"}>
-          {error.loadMore ? (
-            <TextError>{error.loadMore}</TextError>
-          ) : (
+        {error.loadMore ? (
+          <TextError>{error.loadMore}</TextError>
+        ) : (
+          <Flex height={"20vh"}>
             <ButtonPrimary
               aria-label="load more gifs"
               onClick={() => loadMoreGifs(keyword)}
@@ -64,8 +93,8 @@ const Search = () => {
             >
               load more
             </ButtonPrimary>
-          )}
-        </Flex>
+          </Flex>
+        )}
       </Container>
     </main>
   );
