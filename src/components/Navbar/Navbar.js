@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogoLight from "../Icons/LogoLight";
 import MenuIcon from "../Icons/Menu";
 import CloseIcon from "../Icons/Close";
@@ -18,6 +18,12 @@ const Navbar = ({ changeTheme }) => {
       setIsOpen(false);
     }, 1000);
   };
+
+  useEffect(() => {
+    const htmlDom = document.querySelector("html");
+    if (isOpen) return (htmlDom.style.overflow = "hidden");
+    htmlDom.style.overflow = "visible";
+  }, [isOpen]);
 
   const menuSmDevice = (
     <>
@@ -50,7 +56,7 @@ const Navbar = ({ changeTheme }) => {
   return (
     <nav>
       <Wrapper>
-        <LinkStyled to="/" aria-label='back to homepage'>
+        <LinkStyled to="/" aria-label="back to homepage">
           <LogoLight
             height={smDevice ? "15" : "21"}
             width={smDevice ? "75" : "89"}

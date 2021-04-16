@@ -1,8 +1,6 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import CloseIcon from "../Icons/Close";
-import styled from "styled-components";
-import { Button } from "../common/styled";
 import { Backdrop, Container, CloseBtn } from "./styled";
 
 

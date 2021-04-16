@@ -16,7 +16,7 @@ const Menu = ({ changeTheme, closeMenu}) => {
       closeMenu();
       hideMenu(containerRef);
     });
-  }, [history]);
+  }, [history, closeMenu]);
 
   return (
     <Container ref={(elem) => (containerRef = elem)}>

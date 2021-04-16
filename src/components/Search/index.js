@@ -29,11 +29,12 @@ const Search = () => {
 
   const haveSuggestions = suggestions.length > 0;
   return (
+    <section>
     <Wrapper>
       <form onSubmit={handleSubmit}>
         <FlexWrapper justify={lg && "flex-start"}>
           <Input
-            type="text"
+            type="search"
             placeholder="Search your favorite gifs..."
             aria-label="Search gifs by keywords"
             value={query}
@@ -55,6 +56,7 @@ const Search = () => {
         </Box>
       )}
     </Wrapper>
+    </section>
   );
 };
 

@@ -7,7 +7,6 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box
 }
 body {
-  /* min-height:100vh; */
   line-height: 1.5;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -35,12 +34,11 @@ a:hover{
 }
 
 a:focus{
-  border-bottom: solid 2px ${({ theme }) => theme.palette.colorPrimary}
+  outline: 2px solid ${({ theme }) => theme.palette.colorPrimary}
 }
 
-button:focus, input[text]:focus{     
-  outline:none;
-  border: 2px solid ${({ theme }) => theme.palette.colorPrimary}
+button:focus, input[type="search"]:focus{     
+  outline: 2px solid ${({ theme }) => theme.palette.colorPrimary};
 }
 `;
 

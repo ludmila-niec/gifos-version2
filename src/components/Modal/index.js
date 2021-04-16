@@ -11,6 +11,9 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
 
   useEffect(() => {
     isOpen && buttonRef.current.focus();
+    const htmlDom = document.querySelector("html");
+    if (isOpen) return (htmlDom.style.overflow = "hidden");
+    htmlDom.style.overflow = "visible";
   }, [isOpen]);
 
   function onOpen() {
@@ -29,12 +32,18 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
   function onKeyDown(e) {
     return e.keyCode === 27 && onClose();
   }
+
+  function triggerOpenOnKeyUp(e) {  
+    e.keyCode === 13 && onOpen()
+  }
+
   return (
     <>
       <ModalTrigger
         triggerContent={triggerContent}
         mediaSize={mediaSize}
         onOpen={onOpen}
+        onKeyUp={triggerOpenOnKeyUp}
       />
       {isOpen && (
         <ModalContent

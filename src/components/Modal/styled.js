@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Flex } from "../common/styled";
+import { Button } from "../common/styled";
 
 // MODAL CONTENT
 export const Backdrop = styled.div`
@@ -16,7 +16,7 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
-  padding:2rem;
+  padding: 2rem;
 `;
 
 export const Container = styled.div`
@@ -33,12 +33,13 @@ export const CloseBtn = styled(Button)`
   margin-bottom: 1rem;
 `;
 
-
 // MODAL TRIGGER
 export const WrapperGif = styled.div`
   grid-column: ${(props) => (props.width > 290 ? "span 2" : "span 1")};
-  height:100%;
-  width:100%;
+  cursor: pointer;
+  &:focus {
+    outline: 2px solid ${({ theme }) => theme.palette.colorSecondary};
+  }
   @media (min-width: ${({ theme }) => theme.mediaQueries.mediaMd}) {
     margin: 0;
     grid-column: ${(props) => (props.width > 300 ? "span 2" : "span 1")};
