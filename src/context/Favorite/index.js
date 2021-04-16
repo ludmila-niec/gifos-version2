@@ -81,9 +81,6 @@ export function FavoriteProvider({ children }) {
   };
 
   // local actions
-  const loadLocalFavorites = () => {
-    dispatchLocal({ type: types.GET_LOCAL_FAVORITES });
-  };
   const addLocalFavorite = (id) => {
     dispatchLocal({ type: types.ADD_LOCAL_FAVORITE, payload: { id } });
   };

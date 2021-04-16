@@ -2,8 +2,6 @@ import * as types from "./actionTypes";
 
 export function localReducer(state, action) {
   switch (action.type) {
-    case types.GET_LOCAL_FAVORITES:
-      return state;
     case types.ADD_LOCAL_FAVORITE:
       const { id } = action.payload;
       return [id, ...state];

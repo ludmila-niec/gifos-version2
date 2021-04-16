@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 // icons
 import Fav from "../Icons/Fav.js";
 import NotFav from "../Icons/NotFav.js";
@@ -40,7 +40,6 @@ const GifCardModal = ({ data }) => {
     addFavorite(id);
     animateHeartFavorite(heartRef.current);
   };
-
 
   const handleRemovefavorite = (id) => {
     removeFavorite(id);

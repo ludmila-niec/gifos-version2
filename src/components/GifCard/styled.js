@@ -13,7 +13,6 @@ export const Gif = styled.img`
   }
 `;
 
-
 export const FavBtn = styled(Button)`
   grid-column: 3 / -1;
   align-self: center;
@@ -22,10 +21,6 @@ export const FavBtn = styled(Button)`
   padding: 0.8rem 0.7rem 0.5rem;
   margin: 0;
   background: ${({ theme }) => theme.palette.colorGradient};
-  &:focus {
-    outline: none;
-    border: 2px solid blue;
-  }
 `;
 
 export const Description = styled.p`
