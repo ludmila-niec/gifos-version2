@@ -43,9 +43,15 @@ export function animateGradientLine(target, trigger) {
   });
 }
 
-// ANIMATE GIFS ONLOAD
-export function animateGifsOnLoad(elem) {
-  gsap.from(elem, { opacity: 0, duration: 2, y: 50, ease: "power4.out" });
+
+// OPEN GIF MODAL
+export function animateOpenModal(elem) {
+  gsap.from(elem, {
+    opacity: 0,
+    scale: 0.5,
+    duration: 1.5,
+    ease: "power4.out",
+  });
 }
 
 // ADD FAVORITE GIF
@@ -59,11 +65,12 @@ export function animateHeartFavorite(elem) {
     ease: "power4.out",
   });
 }
-// DELETE FAVORITE GIF
+
+// SHOW TOAST NOTIFICATION
 export function animateToastAlert(elem) {
   gsap.to(elem, {
     opacity: 1,
-    y: -100,
+    yPercent: -50,
     duration: 1,
     repeat: 1,
     yoyo: true,

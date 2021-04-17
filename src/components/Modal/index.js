@@ -9,12 +9,16 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
   const modalRef = useRef();
   const buttonRef = useRef();
 
+  const htmlDom = document.querySelector("html");
   useEffect(() => {
     isOpen && buttonRef.current.focus();
-    const htmlDom = document.querySelector("html");
     if (isOpen) return (htmlDom.style.overflow = "hidden");
     htmlDom.style.overflow = "visible";
-  }, [isOpen]);
+  }, [isOpen, htmlDom]);
+
+  useEffect(() => {
+    return () => (htmlDom.style.overflow = "visible");
+  }, [htmlDom]);
 
   function onOpen() {
     setIsOpen(true);
@@ -33,8 +37,8 @@ const Modal = ({ children, triggerContent, ariaLabel, mediaSize }) => {
     return e.keyCode === 27 && onClose();
   }
 
-  function triggerOpenOnKeyUp(e) {  
-    e.keyCode === 13 && onOpen()
+  function triggerOpenOnKeyUp(e) {
+    e.keyCode === 13 && onOpen();
   }
 
   return (

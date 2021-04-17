@@ -40,11 +40,14 @@ export const ModalGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
 `;
 
-export const Loading = styled.div`
+export const GifWrapper = styled.div`
   grid-column: 1 / -1;
   justify-self: center;
-  background-color: ${({ theme }) => theme.palette.colorPrimary};
+  height: ${({height}) => height + 'px'};
+  width: ${({width}) => width + 'px'};
+  background-color: ${({ theme }) => theme.palette.colorAccent};
   position: relative;
+  max-height:50vh;
 `;
 
 export const HeartAnimation = styled.div`
@@ -62,7 +65,7 @@ export const Alert = styled.div`
   padding: 0.7rem 1rem;
   border-radius: 5px;
   position: absolute;
-  bottom: 0;
+  bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;

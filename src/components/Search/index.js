@@ -34,7 +34,7 @@ const Search = () => {
       <form onSubmit={handleSubmit}>
         <FlexWrapper justify={lg && "flex-start"}>
           <Input
-            type="search"
+            type="text"
             placeholder="Search your favorite gifs..."
             aria-label="Search gifs by keywords"
             value={query}

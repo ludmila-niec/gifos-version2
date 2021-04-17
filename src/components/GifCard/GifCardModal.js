@@ -10,12 +10,16 @@ import {
   FavBtn,
   ModalGrid,
   Description,
-  Loading,
+  GifWrapper,
   HeartAnimation,
   Alert,
 } from "./styled";
 // animation
-import { animateHeartFavorite, animateToastAlert } from "../../animate";
+import {
+  animateHeartFavorite,
+  animateToastAlert,
+  animateOpenModal,
+} from "../../animate";
 import PropTypes from "prop-types";
 
 const GifCardModal = ({ data }) => {
@@ -23,6 +27,7 @@ const GifCardModal = ({ data }) => {
   const heartRef = useRef(null);
   const alertRef = useRef(null);
   const alertError = useRef(null);
+  const gifWrapperRef = useRef(null);
   // hooks
   const {
     state: { localFavs, error },
@@ -31,6 +36,12 @@ const GifCardModal = ({ data }) => {
   const { mdImg: image, title, id, height, width } = data;
 
   const isFav = localFavs.includes(id);
+
+  useEffect(() => {
+    gifWrapperRef &&
+      gifWrapperRef.current &&
+      animateOpenModal(gifWrapperRef.current);
+  }, []);
 
   useEffect(() => {
     if (error.addFavorite) return animateToastAlert(alertError.current);
@@ -42,15 +53,17 @@ const GifCardModal = ({ data }) => {
   };
 
   const handleRemovefavorite = (id) => {
-    removeFavorite(id);
+    setTimeout(() => {
+      removeFavorite(id);
+    }, 1500);
     animateToastAlert(alertRef.current);
   };
 
   return (
     <ModalGrid>
-      <Loading width={width} height={height}>
-        <Gif src={image} alt={title}/>
-      </Loading>
+      <GifWrapper width={width} height={height} ref={gifWrapperRef}>
+        <Gif src={image} alt={title} loading='lazy' />
+      </GifWrapper>
       <HeartAnimation ref={heartRef}>
         <Fav height="59" width="57" />
       </HeartAnimation>

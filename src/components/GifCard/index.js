@@ -1,12 +1,11 @@
-import React from "react";
+import react from "react";
 import Modal from "../Modal";
 import GifCardModal from "./GifCardModal";
 // custom hooks
 import { useBreakpoint } from "../../context/MediaQueries";
 // styles
-import { Gif} from "./styled";
+import { Gif } from "./styled";
 import PropTypes from "prop-types";
-
 
 const GifCard = ({ data }) => {
   const { sm } = useBreakpoint();
@@ -16,19 +15,17 @@ const GifCard = ({ data }) => {
   const { title, id } = data;
 
   const triggerContent = (
-        <Gif
-          src={sm ? lowImg : mdImg}
-          alt={title}
-          loading="lazy"
-        />
-  )
+    <Gif
+      src={sm ? lowImg : mdImg}
+      alt={title}
+      loading="lazy"
+    />
+  );
+
   return (
-    
-      <Modal triggerContent={triggerContent} mediaSize={[lowWidth, width]}>
-      <GifCardModal
-            data={{ mdImg, title, id, height, width }}
-          />
-      </Modal>
+    <Modal triggerContent={triggerContent} mediaSize={[lowWidth, width]}>
+      <GifCardModal data={{ mdImg, title, id, height, width }} />
+    </Modal>
   );
 };
 
