@@ -53,7 +53,7 @@ const Search = () => {
       <main style={{ minHeight: "60vh" }}>
         <Flex height="50vh">
           <div style={{ overflowY: "hidden" }}>
-            <TextError ref={errorMsgRef}>{error.search}</TextError>
+            <TextError role='alert' ref={errorMsgRef}>{error.search}</TextError>
           </div>
         </Flex>
       </main>
@@ -88,7 +88,7 @@ const Search = () => {
         {gifs.length > 0 && <GridTemplate data={gifs} />}
         {isLoading && <Loading />}
         {error.loadMore ? (
-          <TextError>{error.loadMore}</TextError>
+          <TextError role='alert'>{error.loadMore}</TextError>
         ) : (
           <Flex height={"20vh"}>
             <ButtonPrimary

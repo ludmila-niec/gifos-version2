@@ -7,6 +7,7 @@ const ModalTrigger = ({ triggerContent, onOpen, onKeyUp, mediaSize }) => {
   const { sm } = useBreakpoint();
   return (
     <WrapperGif
+      aria-label="Expand gif"
       tabIndex="0"
       role="button"
       onClick={onOpen}

@@ -48,7 +48,7 @@ const Favorites = () => {
       <main style={{ minHeight: "60vh" }}>
         <Flex height="50vh">
           <div style={{ overflowY: "hidden" }}>
-            <TextError ref={errorMsgRef}>{error.loadFavorites}</TextError>
+            <TextError role='alert' ref={errorMsgRef}>{error.loadFavorites}</TextError>
           </div>
         </Flex>
       </main>

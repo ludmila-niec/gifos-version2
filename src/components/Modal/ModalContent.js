@@ -3,7 +3,6 @@ import React from "react";
 import CloseIcon from "../Icons/Close";
 import { Backdrop, Container, CloseBtn } from "./styled";
 
-
 const ModalContent = ({
   content,
   onClose,
@@ -23,7 +22,7 @@ const ModalContent = ({
       onKeyDown={onKeyDown}
     >
       <Container ref={modalRef}>
-        <CloseBtn onClick={onClose} ref={buttonRef}>
+        <CloseBtn aria-label="Close button" onClick={onClose} ref={buttonRef}>
           <CloseIcon className="close-btn" />
         </CloseBtn>
         {content}

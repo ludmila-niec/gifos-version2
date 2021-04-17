@@ -36,7 +36,7 @@ const Trending = () => {
           <SectionTitle>Top Trending Gifs</SectionTitle>
           <Flex height="30vh">
             <div style={{ overflowY: "hidden" }}>
-              <TextError ref={errorMsgRef}>{error.trendingGifs}</TextError>
+              <TextError role='alert' ref={errorMsgRef}>{error.trendingGifs}</TextError>
             </div>
           </Flex>
         </Container>
@@ -52,7 +52,7 @@ const Trending = () => {
         {gifsLoaded && <GridTemplate data={gifs} />}
         {isLoading && <Loading />}
         {error.moreGifs ? (
-          <TextError>{error.moreGifs}</TextError>
+          <TextError role='alert'>{error.moreGifs}</TextError>
         ) : (
           <Flex height={"20vh"}>
             <ButtonPrimary

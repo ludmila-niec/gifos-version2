@@ -62,7 +62,7 @@ const GifCardModal = ({ data }) => {
   return (
     <ModalGrid>
       <GifWrapper width={width} height={height} ref={gifWrapperRef}>
-        <Gif src={image} alt={title} loading='lazy' />
+        <Gif src={image} alt={title} loading="lazy" />
       </GifWrapper>
       <HeartAnimation ref={heartRef}>
         <Fav height="59" width="57" />
@@ -83,8 +83,15 @@ const GifCardModal = ({ data }) => {
           <NotFav />
         </FavBtn>
       )}
-      <Alert ref={alertRef}>Favorito eleminado</Alert>
-      <Alert error ref={alertError}>{`Error: ${error.addFavorite}`}</Alert>
+      <Alert role="status" aria-live="polite" ref={alertRef}>
+        Favorito eleminado
+      </Alert>
+      <Alert
+        role="status"
+        aria-live="polite"
+        error
+        ref={alertError}
+      >{`Error: ${error.addFavorite}`}</Alert>
     </ModalGrid>
   );
 };

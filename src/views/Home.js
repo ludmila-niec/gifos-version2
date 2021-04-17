@@ -19,7 +19,7 @@ const Home = () => {
       <Container>
         <Title ref={(elem) => (titleRef = elem)}>welcome to gifos</Title>
         <Subtitle ref={(elem) => (subtitleRef = elem)}>
-          Get inspired, search and download your favorite gifs
+          Get inspired, search and save your favorite gifs
         </Subtitle>
       </Container>
       <Trending />
