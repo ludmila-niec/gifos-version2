@@ -43,6 +43,10 @@ export function animateGradientLine(target, trigger) {
   });
 }
 
+// SHOW GIF LOADED
+export function animateGifOnLoad(elem) {
+  gsap.from(elem, { opacity: 0, duration: 1.5, ease: "power4.out" });
+}
 
 // OPEN GIF MODAL
 export function animateOpenModal(elem) {

@@ -37,7 +37,7 @@ a:focus{
   outline: 2px solid ${({ theme }) => theme.palette.colorPrimary}
 }
 
-button:focus, input[type="search"]:focus{     
+button:focus, input[type="text"]:focus{     
   outline: 2px solid ${({ theme }) => theme.palette.colorPrimary};
 }
 `;

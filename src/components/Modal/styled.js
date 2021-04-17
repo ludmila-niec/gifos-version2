@@ -36,6 +36,7 @@ export const CloseBtn = styled(Button)`
 // MODAL TRIGGER
 export const WrapperGif = styled.div`
   grid-column: ${(props) => (props.width > 290 ? "span 2" : "span 1")};
+  background-color: ${({ theme }) => theme.palette.colorAccent};
   cursor: pointer;
   &:focus {
     outline: 2px solid ${({ theme }) => theme.palette.colorSecondary};
@@ -48,6 +49,5 @@ export const WrapperGif = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 3px;
-    background-color: ${({ theme }) => theme.palette.colorPrimary};
   }
 `;
