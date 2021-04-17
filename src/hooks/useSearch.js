@@ -46,7 +46,7 @@ const useSearch = () => {
       setQuery("");
       setError({});
       const response = await api.searchGif(keyword);
-      const { data, meta} = response;
+      const { data, meta } = response;
       if (meta.status !== 200) throw new Error(meta.msg);
       setGifs(data);
     } catch (err) {
@@ -60,10 +60,10 @@ const useSearch = () => {
     try {
       isMountedRef.current = true;
       setIsLoading(true);
-      setError("");
+      setError({});
       let offset = gifs.length + 1;
       const response = await api.loadMoreResultsGifs(keyword, offset);
-      const { data, meta} = response;
+      const { data, meta } = response;
       if (meta.status !== 200) throw new Error(meta.msg);
       if (isMountedRef.current)
         setGifs((prevGifs) => {
@@ -72,7 +72,7 @@ const useSearch = () => {
         });
     } catch (err) {
       if (isMountedRef.current)
-        setError({ loadMore:"Fail to load more gifs :(" });
+        setError({ loadMore: "Fail to load more gifs :(" });
       console.log(err);
     } finally {
       if (isMountedRef.current) setIsLoading(false);
