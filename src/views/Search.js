@@ -31,6 +31,10 @@ const Search = () => {
   const noResults = !isLoading && !gifsLoaded;
 
   useEffect(() => {
+    document.title = "Gifs || Search";
+  }, []);
+
+  useEffect(() => {
     submitSearch(keyword);
     animateSearchResult(gradientLineRef.current, titleRef.current);
   }, [keyword]);
@@ -70,6 +74,7 @@ const Search = () => {
       </main>
     );
   }
+
   return (
     <main style={{ minHeight: "60vh" }}>
       <TitleContainer>
@@ -80,7 +85,7 @@ const Search = () => {
       </TitleContainer>
       <Container>
         {error.search && <TextError>{error.search}</TextError>}
-        {gifsLoaded && <GridTemplate data={gifs} />}
+        {gifs.length > 0 && <GridTemplate data={gifs} />}
         {isLoading && <Loading />}
         {error.loadMore ? (
           <TextError>{error.loadMore}</TextError>

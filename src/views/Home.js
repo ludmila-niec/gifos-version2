@@ -8,8 +8,12 @@ const Home = () => {
   let titleRef = useRef(null);
   let subtitleRef = useRef(null);
   useEffect(() => {
+    document.title = "Gifs || Home";
+  }, []);
+
+  useEffect(() => {
     animateHeading(titleRef, subtitleRef);
-  });
+  }, []);
   return (
     <main style={{ minHeight: "90vh" }}>
       <Container>

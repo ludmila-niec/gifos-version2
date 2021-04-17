@@ -27,6 +27,10 @@ const Favorites = () => {
   const noFavorites = !isLoading && !gifsLoaded;
 
   useEffect(() => {
+    document.title = "Gifs || Favorites";
+  }, []);
+
+  useEffect(() => {
     loadFavorites();
     animateGradientLine(gradientLineRef.current, containerRef.current);
   }, []);
