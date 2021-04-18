@@ -84,7 +84,7 @@ const GifCardModal = ({ data }) => {
         </FavBtn>
       )}
       <Alert role="status" aria-live="polite" ref={alertRef}>
-        Favorito eleminado
+        Favorite deleted
       </Alert>
       <Alert
         role="status"
