@@ -15,7 +15,6 @@ export const Backdrop = styled.div`
   background: ${({ theme }) => theme.palette.colorGlass};
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 20px;
   padding: 2rem;
 `;
 
@@ -37,7 +36,9 @@ export const CloseBtn = styled(Button)`
 export const WrapperGif = styled.div`
   grid-column: ${(props) => (props.width > 290 ? "span 2" : "span 1")};
   background-color: ${({ theme }) => theme.palette.colorAccent};
+  height:100%;
   cursor: pointer;
+
   &:focus {
     outline: 2px solid ${({ theme }) => theme.palette.colorSecondary};
   }
