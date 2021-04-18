@@ -1,23 +1,28 @@
-# :sparkles: :dizzy: Gifos 2.0 :dizzy: :sparkles:
+# :sparkles: :dizzy: Gifos 2.0 :dizzy: :sparkles: [Live Demo](https://gifos-version2.vercel.app/)
 Inspirándome en el segundo proyecto realizado en la carrera Desarrollo Full Stack en Acamica, donde desarrollé una plataforma integrada con la API de Giphy para buscar gifs, me propuse el desafío de hacer una nueva versión con las nuevas tecnologías aprendidas. En esta ocasión la aplicación esta realizada con React.js y styled-components.
 
 ## SCREENSHOTS
+Light Theme
 ![demo-light](/assets/screenshot/demo-light.png)
 
+Dark Theme
 ![demo-dark](/assets/screenshot/demo-dark.png)
 
 ## DEMO
 _Demo Cambio de Theme_
+\
 ![change-theme-example](/assets/screenshot/change-theme.gif)
 \
 \
 \
 _Demo Busqueda_
+\
 ![search-example](/assets/screenshot/search-demo.gif)
 \
 \
 \
 _Demo Agregar Gif a Favoritos_
+\
 ![add-fav-example](/assets/screenshot/add-fav.gif)
 
 
