@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# :sparkles: :dizzy: Gifos 2.0 :dizzy: :sparkles:
+Inspirándome en el segundo proyecto realizado en la carrera Desarrollo Full Stack en Acamica, donde desarrollé una plataforma integrada con la API de Giphy para buscar gifs, me propuse el desafío de hacer una nueva versión con las nuevas tecnologías aprendidas. En esta ocasión la aplicación esta realizada con React.js y styled-components.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SCREENSHOTS
+![demo-light](/assets/screenshot/demo-light.png)
 
-## Available Scripts
+![demo-dark](/assets/screenshot/demo-dark.png)
 
-In the project directory, you can run:
+## DEMO
+_Demo Cambio de Theme_
+![change-theme-example](/assets/screenshot/change-theme.gif)
+\
+\
+\
+_Demo Busqueda_
+![search-example](/assets/screenshot/search-demo.gif)
+\
+\
+\
+_Demo Agregar Gif a Favoritos_
+![add-fav-example](/assets/screenshot/add-fav.gif)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## FUNCIONALIDADES
+- 2 themes intercambiables: Light theme y dark theme.
+- Barra de búsqueda de gifs.
+- Autocompletado en base a la búsqueda.
+- Seccion con los gifs que son tendencia.
+- Sección Favoritos.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## NUEVO EN ESTA VERSION
+- Aplicación realizada con React.js.
+- Styling con styled-components.
+- UI completamente rediseñada.
+- Diseño responsive.
+- Animaciones con gsap.
+- Nueva Sección de Favoritos. Los gif favoritos se guardan en LocalStorage.
+- Diseño de interacciones al agregar un gif a favoritos y al eliminarlo.
+- Cargar más gif en la sección de tendencias y más resultados en las búsquedas.
+- Navegación con el teclado.
+- Accesibilidad.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## INSTRUCCIONES
+**Para clonar y correr la aplicación vas a necesitar Node.js y Git.**
+```bash
 
-### `npm run build`
+git clone https://github.com/ludmila-niec/gifos-version2.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+**Abrir el repositorio**
+```bash
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cd /gifos-react
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+**Instalar las dependencias**
+```bash
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+\
+**Vas a necesitar una API Key para realizar las peticiones a Giphy.**
+Podes registrarte y generar una, dirigiendote primero a este [Link](https://giphy.com/join)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Una vez registrade te dirigis a este [Link](https://developers.giphy.com/) que te lleva la sección developers y haces click en "Get started".
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Por último vas a hacer click en "Create an app" y seguis los pasos para completar el proceso.
+\
+\
+\
+**Crear un archivo .env en el directorio principal.**
 
-## Learn More
+Con la API Key obtenida vas a crear una variable de entorno
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`REACT_APP_API_KEY = "<tu api key>"`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Correr la aplicación**
+```bash
 
-### Code Splitting
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+Abrir [http://localhost:3000](http://localhost:3000) para ver en el browser.
 
-### Analyzing the Bundle Size
+--- 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## TECNOLOGIAS UTILIZADAS
+:sparkles: React.js
+\
+:sparkles: Styled-components
+\
+:sparkles: GSAP
