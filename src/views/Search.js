@@ -25,18 +25,23 @@ const Search = () => {
   const gradientLineRef = useRef(null);
   const errorMsgRef = useRef(null);
   const noResultsRef = useRef(null);
+  const submitSearchRef = useRef(() => {})
 
   const gifsLoaded = gifs.length > 0;
   // 0 results for current search
   const noResults = !isLoading && !gifsLoaded;
+
+  submitSearchRef.current = (keyword) =>{
+    submitSearch(keyword)
+    animateSearchResult(gradientLineRef.current, titleRef.current);
+  }
 
   useEffect(() => {
     document.title = "Gifs || Search";
   }, []);
 
   useEffect(() => {
-    submitSearch(keyword);
-    animateSearchResult(gradientLineRef.current, titleRef.current);
+    submitSearchRef.current(keyword);
   }, [keyword]);
 
   useEffect(() => {

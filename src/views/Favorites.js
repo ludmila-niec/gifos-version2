@@ -22,6 +22,11 @@ const Favorites = () => {
   const gradientLineRef = useRef(null);
   const errorMsgRef = useRef(null);
   const noFavoritesRef = useRef(null);
+  const loadFavoritesRef = useRef(() => {})
+
+  loadFavoritesRef.current = () =>{
+    loadFavorites()
+  }
 
   const gifsLoaded = gifs.length > 0;
   const noFavorites = !isLoading && !gifsLoaded;
@@ -31,7 +36,7 @@ const Favorites = () => {
   }, []);
 
   useEffect(() => {
-    loadFavorites();
+    loadFavoritesRef.current();
     animateGradientLine(gradientLineRef.current, containerRef.current);
   }, []);
 
@@ -48,7 +53,9 @@ const Favorites = () => {
       <main style={{ minHeight: "60vh" }}>
         <Flex height="50vh">
           <div style={{ overflowY: "hidden" }}>
-            <TextError role='alert' ref={errorMsgRef}>{error.loadFavorites}</TextError>
+            <TextError role="alert" ref={errorMsgRef}>
+              {error.loadFavorites}
+            </TextError>
           </div>
         </Flex>
       </main>
